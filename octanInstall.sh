@@ -14,7 +14,7 @@ echo "domain $domain"
 docker network create nga_nw
 
 # create oracle database container
-docker run -d  -v /usr/lib/oracle/xe/oradata/XE:/usr/lib/oracle/xe/oradata/XE --shm-size=2g --net nga_nw  --name nga_oracle alexeiled/docker-oracle-xe-11g
+docker run -d  -v /usr/lib/oracle/xe/oradata/XE:/usr/lib/oracle/xe/oradata/XE --shm-size=2g --net nga_nw  --restart=always --name nga_oracle alexeiled/docker-oracle-xe-11g
 
 # create Elastic Search container
 docker run -d  -e "ES_HEAP_SIZE=4G" -v /var/elasticsearch/data:/usr/share/elasticsearch/data  --net nga_nw  --name nga_es --restart=always elasticsearch:2.2
