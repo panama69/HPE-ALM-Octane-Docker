@@ -20,6 +20,20 @@ echo "********     Almost Done, 30s more    ********"
 echo "********                              ********"
 echo "**********************************************"
 echo "**********************************************"
-sleep 30s
-
-/usr/bin/firefox -new-window http://localhost:8085/ui
+COUNTER=0
+while [ $COUNTER -lt 10 ]; do
+     let found=`grep "Server is ready!" /var/log/nga/wrapper.log|wc -l`
+     echo "found value: $found" 
+     if [ $found -lt  1 ]; then 
+          echo "Still starting" 
+          if [ $COUNTER -eq 10 ]; then
+               echo "Something unusual has happend.  Check /var/log/nga/wrapper.log for possible errors"
+          fi
+     else    
+          echo "Up and ready for use"
+          /usr/bin/firefox -new-window http://localhost:8085/ui
+          let COUNTER=10
+     fi
+     let COUNTER+=1
+     sleep 10 
+done
