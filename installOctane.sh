@@ -21,15 +21,17 @@ echo "********                              ********"
 echo "**********************************************"
 echo "**********************************************"
 COUNTER=0
+echo -n "Still starting "
 while [ $COUNTER -lt 10 ]; do
      let found=`grep "Server is ready!" /var/log/nga/wrapper.log|wc -l`
-     echo "found value: $found" 
      if [ $found -lt  1 ]; then 
-          echo "Still starting" 
+          echo -n "." 
           if [ $COUNTER -eq 10 ]; then
+               echo
                echo "Something unusual has happend.  Check /var/log/nga/wrapper.log for possible errors"
           fi
-     else    
+     else
+          echo
           echo "Up and ready for use"
           /usr/bin/firefox -new-window http://localhost:8085/ui
           let COUNTER=10
