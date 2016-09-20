@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <!-- Database connection parameters -->
+    <!-- The database connection string required to connect to the database.
+         It includes the following details: database type, database server name,
+         database server port number, service name. For the service name, enter
+         the pluggable database name.
+         For example: jdbc:mercury:oracle://dbserver1.net:1521;servicename=pdbmqm -->
+    <entry key="ConnectionString">jdbc:mercury:oracle://nga_oracle:1521;servicename=XE</entry>
+    <!-- The user name of the database administrator.
+         This should be an existing user who has the required DB permissions to
+         create schemas, tables, and sessions. For example: sa
+    -->
+    <entry key="DBAdminUser">system</entry>
+    <!-- The password of the database administrator -->
+    <entry key="DBAdminPassword">oracle</entry>
+
+    <!-- Database configuration properties -->
+    <!-- The tablespace in the Oracle database. For example: DATA -->
+    <entry key="TableSpace">USERS</entry>
+    <!-- The temporary tablespace in the Oracle database. For example: TEMP -->
+    <entry key="TempTableSpace">TEMP</entry>
+    <!-- The name of the Site Admin schema. For example: qcsa -->
+    <entry key="SchemaName">qcsa</entry>
+    <!-- The password of the Site Admin schema.-->
+    <entry key="SchemaPassword">HPALMdem0s</entry>
+
+    <!-- Possible values:
+            CREATE_NEW - Create a new Site Admin schema
+            CONNECT_TO_EXISTING - Connect to an existing schema (relevant for cluster)
+                            All nodes in a cluster should connect to an existing schema, except for
+                            the first node, which should connect to a new schema.
+            FILL_EXISTING - If the specified DB admin user does not have permissions to
+                            create a schema. The DBA should create a new Site Admin schema
+                            and specify the SchemaName parameter.
+    -->
+    <entry key="SiteAction">CREATE_NEW</entry>
+    <!-- Relevant only for the FILL_EXISTING site action. To configure the
+    shared space, in the setup.xml file, add SharedSpaceSchemaName and set
+    it to the name of the DB schema that is designated for the shared space.-->
+    <!--<entry key="SharedSpaceSchemaName">Schema_Name</entry>-->
+
+    <!-- Elastic Search connection settings -->
+    <!-- The hostname of the machine running Elasticsearch.
+        For example: elastichost.mydomain.com -->
+    <entry key="ElasticHost">nga_es</entry>
+    <!-- The number of the port running the Elasticsearch binary service.
+        For example: 9300 -->
+    <entry key="ElasticPort">9300</entry>
+    <!-- The name of the Elasticsearch cluster.
+        For example: myelasticcluster -->
+    <entry key="ElasticClusterName">elasticsearch</entry>
+
+    <!-- Domain settings -->
+    <!-- Domain only -  e.g. if your server is server.domain.com domain.com should go here -->
+    <!-- The name of the domain used for SSO authentication. For a local installation,
+         it is the name of the domain to which the server machine belongs.
+         For example: mydomain.com
+    -->
+    <entry key="SsoMasterDomain">flynn.net</entry>
+
+    <!-- admin user settings -->
+    <!-- User name should be an e-mail -->
+    <entry key="SiteAdministratorUser">sa@nga</entry>
+    <!-- Password must pass password complexity rules:
+         1. At least 8 characters
+         2. One Capital case letter
+         3. One lower case letter
+         4. At least one number or symbol
+    -->
+    <entry key="SiteAdministratorPassword">HP$$ALMdem0s</entry>
+
+    <!-- The full path of the repository folder.
+         For example: /opt/octane/repo -->
+    <entry key="RepositoryFolder">/opt/octane/repo</entry>
+
+    <!-- The private key used to encrypt sensitive data like passwords.
+         This property is relevant only for CREATE_NEW or FILL_EXISTING site actions
+         in order to initiate the encryption service
+         For example: Strive not to be a success, but rather to be of value (Albert Einstein)
+    -->
+    <entry key="InitString">octane to the power of eight</entry>
+    <!-- The password used for Hazelcast for communication between nodes in the cluster. -->
+    <entry key="DistributedPassword">octane to the power of eight</entry>
+    <!-- The init key used to initiate the SSO service. For example: This is the init string for SSO service. -->
+    <entry key="SsoInitString">octane to the power of eight</entry>
+
+</properties>
+
